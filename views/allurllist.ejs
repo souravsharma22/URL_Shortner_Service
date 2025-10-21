@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All urls</title>
+</head>
+
+<body>
+    <h1>Records :-- Url Shortner Service</h1>
+    <% if(locals.urls){ %>
+        <h2>all urls are</h2>
+        <table>
+            <thead>
+                <th>sl no.</th>
+                <th>shortid</th>
+                <th>original url</th>
+                <th>count</th>
+            </thead>
+            <tbody>
+                <% urls.forEach((url,index)=> { %>
+                    <tr>
+                    <td><%= index +1 %></td>
+                    <td><%= url.shortId %></td>
+                    <td><%= url.redirectURL %></td>
+                    <td><%= url.visitHistory.length %></td>
+                    </tr>
+                <%    }); %>
+            </tbody>
+        </table>
+
+        <% }else{ %>
+            <h2>No Records Yet</h2>
+        <% } %>
+
+
+</body>
+
+</html>
