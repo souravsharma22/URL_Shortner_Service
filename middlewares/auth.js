@@ -1,4 +1,6 @@
 import { getUser } from "../services/auth.js";
+
+
 async function allowLoggedUsersOnly (req , res , next) {
     const userId = req.cookies.uid;
 

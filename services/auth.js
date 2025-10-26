@@ -1,11 +1,24 @@
-let sessionIdToUser = new Map();
+// let sessionIdToUser = new Map();
+import dotenv from 'dotenv';
+dotenv.config()
+import jwt from 'jsonwebtoken'
+const secretkey = process.env.SECERET_KEY
 
-function setUser(id, user){
-    sessionIdToUser.set(id, user);
+function setUser(user){
+    // sessionIdToUser.set(id, user);
+    return jwt.sign({
+        _id : user._id,
+        email : user.email
+    } , secretkey)
 }
 
-function getUser(id){
-    return sessionIdToUser.get(id);
+function getUser(token){
+    if(!token) return null;
+    try{
+        return jwt.verify(token ,secretkey)
+    }catch(err){
+        return null;
+    }
 }
 
 export {setUser , getUser}
