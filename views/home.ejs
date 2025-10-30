@@ -17,8 +17,11 @@
         <h2>URL Generated</h2>
         <h4>shorted id is : http://localhost:3000/api/<%= id %></h4>
     <% } %>
-        <form action="/getallurls" method="get">
+        <form action="/url/getallurls" method="get">
             <button type="submit">Get All urls</button>
+        </form>
+        <form action="/url/admin/getallurls" method="get">
+            <button type="submit">Get All urls as Admin</button>
         </form>
 </body>
 </html>

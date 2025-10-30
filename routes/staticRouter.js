@@ -7,12 +7,6 @@ staticRouter.get('/', (req, res)=>{
     return res.render('home');
 })
 
-staticRouter.get('/getallurls', async (req, res)=>{
-    if(!req.user) return res.redirect('/login')
-    let results = await URL.find({ createdBy : req.user._id});
-    return res.render('allurllist', {urls: results})
-
-})
 
 staticRouter.get("/signup" , (req, res)=>{
     return res.render('signup');

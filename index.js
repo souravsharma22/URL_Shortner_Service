@@ -7,7 +7,9 @@ import cookieParser from "cookie-parser";
 import router from "./routes/url.js";
 import userRouter from "./routes/userRoute.js";
 import staticRouter from "./routes/staticRouter.js";
-import { allowLoggedUsersOnly , checkAuth} from "./middlewares/auth.js";
+// import { allowLoggedUsersOnly , checkAuth} from "./middlewares/auth.js";
+import { allowLoggedUsersOnly , restrictTo} from "./middlewares/auth.js";
+
 
 const app = express()
 
@@ -25,10 +27,12 @@ app.set('view engine', 'ejs')
 app.set('views' , path.resolve('./views'));
 
 
+// app.use(allowLoggedUsersOnly); // cant use it here otherwise login will also try to pass through this and always redirect and 
+// this will make a loop causing crash.
 //routes
-app.use('/url', allowLoggedUsersOnly , router);
+app.use('/url' ,allowLoggedUsersOnly, router);
 app.use('/user' , userRouter);
-app.use('/', checkAuth ,staticRouter);
+app.use('/',staticRouter);
 
 app.get('/api/:shortId', async (req, res)=>{
     const shortId  = req.params.shortId;

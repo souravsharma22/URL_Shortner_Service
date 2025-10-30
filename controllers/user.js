@@ -23,11 +23,13 @@ async function handleLogIn(req , res){
         return res.render('login' , {error: "Invalid Username or passwors"});
 
     // const sessionId = uuidv4()
-
     const token = setUser(currentUser);
 
     res.cookie('uid' , token );
     return res.redirect('/')
+    
+    //using header authorization 
+    // return res.json({token})
 }
 
 export  {handleSignUp , handleLogIn}

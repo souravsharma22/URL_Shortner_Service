@@ -8,7 +8,8 @@ function setUser(user){
     // sessionIdToUser.set(id, user);
     return jwt.sign({
         _id : user._id,
-        email : user.email
+        email : user.email,
+        role : user.role
     } , secretkey)
 }
 
